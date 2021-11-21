@@ -21,10 +21,11 @@
 #ifndef SHORTCUT_H
 #define SHORTCUT_H
 
+#include "deskClockCore_global.h"
 #include <QObject>
 #include <QString>
 
-class Shortcut : public QObject
+class DESKCLOCKCORE_EXPORT Shortcut : public QObject
 {
     Q_OBJECT
 public:
