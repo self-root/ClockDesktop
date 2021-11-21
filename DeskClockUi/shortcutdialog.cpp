@@ -70,6 +70,7 @@ void ShortcutDialog::on_executablePathButton_clicked()
     QFileDialog fileDialog;
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFile);
+    fileDialog.setDirectory(QDir::homePath());
 
     QStringList fileNames;
     if (fileDialog.exec())
@@ -83,6 +84,7 @@ void ShortcutDialog::on_chooseIconButton_clicked()
     QFileDialog fileDialog;
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFile);
+    fileDialog.setDirectory(QDir::homePath());
     fileDialog.setNameFilter("Images (*.png *.ico *.jpg *.jpeg *.svg)");
 
     QStringList fileNames;
