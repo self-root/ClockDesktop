@@ -1,6 +1,7 @@
 #include "databasemanager.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include "logmaker.h"
 /*
     ClockDesktop
     Copyright (C) Root_
@@ -49,6 +50,7 @@ DatabaseManager::DatabaseManager(QObject *parent)
     mDatabase->setDatabaseName(dbpath + "todoclock.db");
     if (!mDatabase->open())
     {
+        Log::log(mDatabase->lastError().text());
         qDebug() << mDatabase->lastError();
     }
 

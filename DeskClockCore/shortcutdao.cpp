@@ -20,6 +20,8 @@
 
 #include "shortcutdao.h"
 #include "deskclockexception.h"
+#include "logmaker.h"
+
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -41,7 +43,10 @@ void ShortcutDao::init() const
                         "icon TEXT, "
                         "args TEXT)");
     if (!query.exec(shortcutSql))
+    {
         qDebug() << query.lastError();
+        Log::log(query.lastError().text());
+    }
 }
 
 std::unique_ptr<std::vector<std::unique_ptr<Shortcut> > > ShortcutDao::getShortcuts() const
@@ -85,6 +90,7 @@ bool ShortcutDao::addShortcut(Shortcut &shortcut) const
     if (!query.exec())
     {
         qDebug() << "Error while saving shortcut: " << query.lastError();
+        Log::log(query.lastError().text());
         return false;
     }
     else
@@ -107,6 +113,7 @@ bool ShortcutDao::remove(int id) const
         return true;
     }
     qDebug() << "Error while deleting shortcut " << id;
+    Log::log(query.lastError().text());
     return false;
 
 }
@@ -133,6 +140,7 @@ bool ShortcutDao::update(Shortcut &shortcut) const
         return true;
     }
     qDebug() << "Error while updating " << shortcut.name() << "\n[ERR] " << query.lastError();
+    Log::log(query.lastError().text());
     return false;
 }
 
@@ -143,5 +151,6 @@ int ShortcutDao::shortcutCount() const
         query.next();
         return query.value(0).toInt();
     }
+    Log::log(query.lastError().text());
     return -1;
 }

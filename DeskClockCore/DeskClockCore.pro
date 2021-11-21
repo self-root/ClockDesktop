@@ -24,6 +24,7 @@ HEADERS += \
     databasemanager.h \
     deskClockCore_global.h \
     deskclockexception.h \
+    logmaker.h \
     shortcut.h \
     shortcutdao.h \
     toDo.h \

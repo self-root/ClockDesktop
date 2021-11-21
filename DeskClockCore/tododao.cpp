@@ -20,6 +20,7 @@
 
 #include "tododao.h"
 #include "databasemanager.h"
+#include "logmaker.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -43,7 +44,10 @@ void ToDoDao::init() const
                              "done INTEGER DEFAULT 0 "
                              ")");
         if (!query.exec(toDoTableSql))
+        {
             qDebug() << query.lastError();
+            Log::log(query.lastError().text());
+        }
     }
 }
 
@@ -81,6 +85,7 @@ bool ToDoDao::add(ToDo &todo) const
     }
 
     qDebug() << "Error while inserting " << todo.title() << " > " << query.lastError();
+    Log::log(query.lastError().text());
     return false;
 }
 
@@ -96,6 +101,7 @@ bool ToDoDao::remove(int id) const
         return true;
     }
     qDebug() << "Error while Deleting " << id << " > " << query.lastError();
+    Log::log(query.lastError().text());
     return false;
 }
 
@@ -117,6 +123,7 @@ bool ToDoDao::update(ToDo &todo) const
         return true;
     }
     qDebug() << "Error while updating " << todo.title() << " > " << query.lastError();
+    Log::log(query.lastError().text());
     return false;
 }
 
@@ -138,5 +145,6 @@ bool ToDoDao::update(std::unique_ptr<ToDo> &todo) const
         return true;
     }
     qDebug() << "Error while updating " << todo->title() << " > " << query.lastError();
+    Log::log(query.lastError().text());
     return false;
 }
