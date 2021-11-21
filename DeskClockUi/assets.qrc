@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="add.png">assets/icons/add.png</file>
+        <file alias="window.png">assets/icons/window.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="frame.png">assets/images/frame.png</file>
+        <file alias="frame2.png">assets/images/frame.png</file>
+        <file alias="frame3.png">assets/images/frame3.png</file>
+        <file alias="frame4.png">assets/images/frame4.png</file>
+        <file alias="btn.png">assets/images/btn.png</file>
+        <file alias="background.png">assets/images/background.png</file>
+        <file alias="todoBackground.png">assets/images/todoBackground.png</file>
+        <file alias="widgetbackground.png">assets/images/widgetbackground.png</file>
+    </qresource>
+</RCC>

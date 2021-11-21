@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>392</width>
+    <height>718</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>392</width>
+    <height>718</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="maximumSize">
+    <size>
+     <width>398</width>
+     <height>718</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralwidget{
+	background-color: rgba(7.8, 12.9, 23.9, .5);
+	/*background-color: #3a86ff;*/
+background-image: url(&quot;:/images/background.png&quot;);
+}
+QWidget#timeWidget{
+	background-color: rgba(7.8, 12.9, 23.9, 0);
+	background-image: url(&quot;:/images/frame4.png&quot;);
+}
+QWidget#shortcutWidget{
+background-color: rgba(7.8, 12.9, 23.9, 0);
+}
+QWidget#todoWidget{
+background-color: rgba(7.8, 12.9, 23.9, 0);
+background-image: url(&quot;:/images/todoBackground.png&quot;);
+}
+QLabel{
+color: #ffd60a;
+font: bold;
+font-size: 36px;
+font-family: &quot;Aller&quot;}
+
+QPushButton{
+width: 85;
+height: 85;
+max-width: 85;
+/*max-height:85;
+border-radius: 8px;
+border-style: solid;
+border-width: 2px;
+border-color: white;*/
+background-image: url(&quot;:/images/btn.png&quot;);
+}
+QLabel#timeLabel{
+	font-size: 48px;
+}
+QLabel#dateLabel{
+	font-size: 24px;
+}
+QListView{
+	background-color: rgba(255, 255, 255, 0);
+	color: white;
+	font: bold;
+	font-family: &quot;Aller&quot;;
+}
+QListView::Item:selected{
+	background-color:  #00fcfc;
+	color: #003566;
+}
+QMenu{
+background-color: rgba(7.8, 12.9, 23.9, 0);
+background-image: url(&quot;:/images/background.png&quot;);
+color: #00fcfc;
+}
+QMenu::item{
+padding: 6px;
+border: 1px solid transparent;
+}
+QMenu::item:selected{
+background-color: rgba(7.8, 12.9, 23.9, 0);
+background-image: url(&quot;:/images/background.png&quot;);
+color: #00fcfc;
+}
+QScrollBar:vertical{
+border: 1px solid #00fcfc;
+background: #00fcfc;
+width: 15px;
+}
+QScrollBar:handle::vertical{
+background: #00fcfc;
+min-height: 20px;
+}
+QScrollBar::add-line:vertical {
+    border: 2px solid grey;
+    background: #00fcfc;
+    height: 20px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical {
+    border: 2px solid #00fcfc;
+    background: #00fcfc;
+    height: 10px;
+	width: 10px
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+QToolTip{
+	opacity: 90;
+	border-radius: 3px;
+background-image: url(&quot;:/images/background.png&quot;);
+}</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="leftMargin">
+       <number>6</number>
+      </property>
+      <property name="topMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>6</number>
+      </property>
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QWidget" name="timeWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>380</width>
+          <height>248</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <property name="leftMargin">
+            <number>45</number>
+           </property>
+           <property name="topMargin">
+            <number>45</number>
+           </property>
+           <property name="rightMargin">
+            <number>60</number>
+           </property>
+           <property name="bottomMargin">
+            <number>45</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="timeLabel">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>14:34:55</string>
+             </property>
+            </widget>
+           </item>
+           <item alignment="Qt::AlignRight">
+            <widget class="QLabel" name="dateLabel">
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string>21 November 2045
+ Wednesday</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="shortcutWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>190</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QGridLayout" name="shortcutLayout" columnminimumwidth="1">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="todoWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>380</width>
+          <height>256</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>380</width>
+          <height>256</height>
+         </size>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <layout class="QVBoxLayout" name="todoLayout">
+           <property name="leftMargin">
+            <number>9</number>
+           </property>
+           <property name="topMargin">
+            <number>9</number>
+           </property>
+           <property name="rightMargin">
+            <number>9</number>
+           </property>
+           <property name="bottomMargin">
+            <number>9</number>
+           </property>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,3 @@
+QWidget#ShortcutDialog{
+    background-image: url(":assets/images/widgetbackground.png");
+}
