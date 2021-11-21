@@ -12,7 +12,7 @@ public:
     static void log(const QString &message)
     {
 #ifdef __linux__
-        QString configPath = QDir::homePath() + "/.clockdesktop/"
+        QString configPath = QDir::homePath() + "/.clockdesktop/";
 #elif _WIN32
         QString configPath = QDir::homePath() + "/clockdesktop/";
 #endif
