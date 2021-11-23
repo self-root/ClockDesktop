@@ -56,7 +56,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QTimer *timer;
-    Controller * controller;
+    //Controller * controller;
     TodoListView *todoListView = nullptr;
 
     void setUi();

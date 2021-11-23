@@ -38,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent)
     timer->setInterval(1000);
     timer->start();
     connect(timer, &QTimer::timeout, this, &MainWindow::setTime);
-    controller = new Controller;
     this->setUi();
     //setMaximumSize(400, 800);
     setMouseTracking(true);
@@ -97,11 +96,12 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::setUi()
 {
+    auto shortcuts = Controller::getShortcuts();
     for (int i = 0; i < 6; i++)
     {
         ShortcutButton *sButton = new ShortcutButton;
-        if (i < (int)controller->shortcuts->size())
-            sButton->setShortcut(*controller->shortcuts->at(i));
+        if (i < (int)shortcuts->size())
+            sButton->setShortcut(*shortcuts->at(i));
         int row = i < 3 ? 0 : 1;
         int col = i % 3;
         ui->shortcutLayout->addWidget(sButton, row, col);

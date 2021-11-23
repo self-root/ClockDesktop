@@ -24,35 +24,10 @@
 #include <QMouseEvent>
 
 TodoDialog::TodoDialog(QWidget *parent) :
-    QWidget(parent),
+    Dialog(parent),
     ui(new Ui::TodoDialog)
 {
     ui->setupUi(this);
-    setWindowFlag(Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TranslucentBackground);
-    setWindowModality(Qt::ApplicationModal);
-}
-
-void TodoDialog::mouseMoveEvent(QMouseEvent *e)
-{
-    if (previous_y < 40)
-    {
-        QCursor curs(Qt::SizeAllCursor);
-        setCursor(curs);
-        move(e->globalX() - previous_x, e->globalY() - previous_y);
-    }
-}
-
-void TodoDialog::mousePressEvent(QMouseEvent *e)
-{
-    previous_x = e->x();
-    previous_y = e->y();
-}
-
-void TodoDialog::mouseReleaseEvent(QMouseEvent *e)
-{
-    if (e->y() < 40 && e->button() == Qt::LeftButton)
-        setCursor(Qt::ArrowCursor);
 }
 
 TodoDialog::~TodoDialog()

@@ -53,7 +53,9 @@ std::unique_ptr<std::vector<std::unique_ptr<Shortcut> > > ShortcutDao::getShortc
 {
     QSqlQuery query("SELECT * FROM shortcut", mDatabase);
     query.exec();
-    std::unique_ptr<std::vector<std::unique_ptr<Shortcut>>> list(new std::vector<std::unique_ptr<Shortcut>>);
+    std::unique_ptr<std::vector<std::unique_ptr<Shortcut>>> list(
+        new std::vector<std::unique_ptr<Shortcut>>
+        );
     while (query.next())
     {
         std::unique_ptr<Shortcut> shortcut(new Shortcut);
@@ -130,7 +132,7 @@ bool ShortcutDao::update(Shortcut &shortcut) const
                   "WHERE id = :id");
     query.bindValue(":name", shortcut.name());
     query.bindValue(":path", shortcut.path());
-    query.bindValue(":incon", shortcut.icon());
+    query.bindValue(":icon", shortcut.icon());
     query.bindValue(":args", shortcut.args());
     query.bindValue(":id", shortcut.id());
 

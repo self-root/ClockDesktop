@@ -1,7 +1,3 @@
-#include "databasemanager.h"
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include "logmaker.h"
 /*
     ClockDesktop
     Copyright (C) Root_
@@ -21,6 +17,10 @@
     along with ClockDesktop.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "databasemanager.h"
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include "logmaker.h"
 
 #include <QSqlError>
 #include <QDebug>

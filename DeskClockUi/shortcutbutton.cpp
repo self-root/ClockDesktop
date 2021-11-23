@@ -91,16 +91,28 @@ void ShortcutButton::mousePressEvent(QMouseEvent *e)
 void ShortcutButton::contextMenuEvent(QContextMenuEvent *e)
 {
     QMenu menu(this);
-    menu.addAction("New", this,[this](){
-            newShortCut();
-        })->setDisabled(!mShortcut.path().isEmpty());
-    menu.addAction("Remove", this, [this](){
-            this->removeShortcut();
-        })->setDisabled(mShortcut.path().isEmpty());
-    menu.addAction("Edit", this, [this](){
-            this->editShortcut();
-        })->setDisabled(mShortcut.path().isEmpty());
+    QAction *createNew = new QAction("New", &menu);
+    QAction *remove = new QAction("Remove", &menu);
+    QAction *edit = new QAction("Edit", &menu);
+
+    // Can't create new on a shortcut already set
+    createNew->setDisabled(!mShortcut.path().isEmpty());
+
+    // Disable edit if ther's no shortcut
+    remove->setDisabled(mShortcut.path().isEmpty());
+
+    edit->setDisabled(mShortcut.path().isEmpty());
+
+    QObject::connect(createNew, &QAction::triggered, this, &ShortcutButton::newShortCut);
+    QObject::connect(edit, &QAction::triggered, this, &ShortcutButton::editShortcut);
+    QObject::connect(remove, &QAction::triggered, this, &ShortcutButton::removeShortcut);
+
+    menu.addAction(createNew);
+    menu.addAction(remove);
+    menu.addAction(edit);
+
     menu.exec(e->globalPos());
+
 }
 
 void ShortcutButton::removeShortcut()

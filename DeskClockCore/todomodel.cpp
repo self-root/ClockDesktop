@@ -30,10 +30,7 @@ TodoModel::TodoModel(QObject *parent)
 int TodoModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    // For list models only the root node (an invalid parent) should return the list's size. For all
-    // other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
     return todoList->size();
-    // FIXME: Implement me!
 }
 
 QVariant TodoModel::data(const QModelIndex &index, int role) const
