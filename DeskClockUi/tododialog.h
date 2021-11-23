@@ -21,7 +21,7 @@
 #ifndef TODODIALOG_H
 #define TODODIALOG_H
 
-#include <QWidget>
+#include "dialog.h"
 #include <QModelIndex>
 #include <QMouseEvent>
 #include "toDo.h"
@@ -30,7 +30,7 @@ namespace Ui {
 class TodoDialog;
 }
 
-class TodoDialog : public QWidget
+class TodoDialog : public Dialog
 {
     Q_OBJECT
 
@@ -39,15 +39,8 @@ public:
     ~TodoDialog();
     void setFieldsValue(const QModelIndex &modelIndex);
 
-    void mouseMoveEvent(QMouseEvent *e) override;
-    void mousePressEvent(QMouseEvent *e) override;
-    void mouseReleaseEvent(QMouseEvent *e) override;
-
 private:
     Ui::TodoDialog *ui;
-
-    int previous_y;
-    int previous_x;
 
 signals:
     void todoValidated(ToDo &todo);

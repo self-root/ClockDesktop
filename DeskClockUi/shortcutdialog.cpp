@@ -23,13 +23,10 @@
 #include <QFileDialog>
 
 ShortcutDialog::ShortcutDialog(QWidget *parent) :
-    QWidget(parent),
+    Dialog(parent),
     ui(new Ui::ShortcutDialog)
 {
     ui->setupUi(this);
-    setAttribute(Qt::WA_TranslucentBackground);
-    setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
-    setWindowModality(Qt::ApplicationModal);
 }
 
 ShortcutDialog::~ShortcutDialog()
@@ -42,29 +39,9 @@ void ShortcutDialog::setFormData(const Shortcut &shortcut)
     ui->shortcutNameEdit->setText(shortcut.name());
     ui->executablePathEdit->setText(shortcut.path());
     ui->argList->setText(shortcut.args());
+    ui->iconPathEdit->setText(shortcut.icon());
 }
 
-void ShortcutDialog::mouseMoveEvent(QMouseEvent *e)
-{
-    if (previous_y < 40)
-    {
-        QCursor curs(Qt::SizeAllCursor);
-        setCursor(curs);
-        move(e->globalX() - previous_x, e->globalY() - previous_y);
-    }
-}
-
-void ShortcutDialog::mousePressEvent(QMouseEvent *e)
-{
-    previous_x = e->x();
-    previous_y = e->y();
-}
-
-void ShortcutDialog::mouseReleaseEvent(QMouseEvent *e)
-{
-    if (e->y() < 40 && e->button() == Qt::LeftButton)
-        setCursor(Qt::ArrowCursor);
-}
 void ShortcutDialog::on_executablePathButton_clicked()
 {
     QFileDialog fileDialog;
@@ -85,7 +62,7 @@ void ShortcutDialog::on_chooseIconButton_clicked()
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFile);
     fileDialog.setDirectory(QDir::homePath());
-    fileDialog.setNameFilter("Images (*.png *.ico *.jpg *.jpeg *.svg)");
+    fileDialog.setNameFilter("Images (*.png *.ico *.jpg *.jpeg *.svg *.webp)");
 
     QStringList fileNames;
     if (fileDialog.exec())

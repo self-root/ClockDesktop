@@ -21,7 +21,7 @@
 #ifndef SHORTCUTDIALOG_H
 #define SHORTCUTDIALOG_H
 
-#include <QWidget>
+#include "dialog.h"
 #include <QMouseEvent>
 #include "shortcut.h"
 
@@ -29,7 +29,7 @@ namespace Ui {
 class ShortcutDialog;
 }
 
-class ShortcutDialog : public QWidget
+class ShortcutDialog : public Dialog
 {
     Q_OBJECT
 
@@ -38,11 +38,6 @@ public:
     ~ShortcutDialog();
 
     void setFormData(const Shortcut &shortcut);
-
-    void mouseMoveEvent(QMouseEvent *e) override;
-    void mousePressEvent(QMouseEvent *e) override;
-    void mouseReleaseEvent(QMouseEvent *e) override;
-
 
 private slots:
     void on_executablePathButton_clicked();
@@ -56,8 +51,8 @@ private slots:
 private:
     Ui::ShortcutDialog *ui;
 
-    int previous_x;
-    int previous_y;
+    //int previous_x;
+    //int previous_y;
 
 signals:
     void shortcutValidated(Shortcut &shortcut);

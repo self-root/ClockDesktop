@@ -35,8 +35,6 @@ public:
 
     void setShortcut(const Shortcut &shortcut_, bool reset=false);
 
-    void newShortCut();
-    void editShortcut();
     void mousePressEvent(QMouseEvent *e) override;
     void contextMenuEvent(QContextMenuEvent *e) override;
 
@@ -46,6 +44,8 @@ public slots:
     void removeShortcut();
     void onShortcutValidated(Shortcut &shortcut);
     void onShortcutEdit(Shortcut &shortcut);
+    void newShortCut();
+    void editShortcut();
 };
 
 #endif // SHORTCUTBUTTON_H
