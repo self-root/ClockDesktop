@@ -110,6 +110,14 @@ void MainWindow::openAbout()
     about->show();
 }
 
+/*void MainWindow::onBringFront()
+{
+    qDebug() << windowFlags();
+    //setWindowFlag(Qt::WindowStaysOnTopHint);
+    activateWindow();
+    raise();
+}*/
+
 void MainWindow::setUi()
 {
     auto shortcuts = Controller::getShortcuts();
@@ -142,6 +150,7 @@ void MainWindow::setTrayIcon()
     QIcon icon(":/icons/shortcut.png");
     trayIcon = new QSystemTrayIcon(icon);
     QMenu *menu = new QMenu;
+    //menu->addAction("Bring Up", this, &MainWindow::onBringFront);
     menu->addAction("About", this, &MainWindow::openAbout);
     menu->addAction("Close", this, &MainWindow::close);
     trayIcon->setContextMenu(menu);

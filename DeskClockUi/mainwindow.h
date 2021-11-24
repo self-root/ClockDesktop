@@ -54,6 +54,7 @@ public slots:
     void setTime();
     void closeEvent(QCloseEvent *event) override;
     void openAbout();
+    //void onBringFront();
 
 private:
     Ui::MainWindow *ui;

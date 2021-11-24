@@ -58,7 +58,8 @@ void ShortcutButton::setShortcut(const Shortcut &shortcut_, bool reset)
                                             : QIcon(mShortcut.icon());*/
     QIcon icn(":/icons/add.png");
     QFileInfo fileInfo(mShortcut.path());
-    if (mShortcut.icon().isEmpty())
+    if (mShortcut.icon().isEmpty()
+        and !mShortcut.path().isEmpty())
     {
         if (fileInfo.exists())
         {
@@ -70,6 +71,11 @@ void ShortcutButton::setShortcut(const Shortcut &shortcut_, bool reset)
             icn = QIcon(":/icons/window.png");
         }
 
+    }
+    else if (!mShortcut.icon().isEmpty()
+             and !mShortcut.path().isEmpty())
+    {
+        icn = QIcon(mShortcut.icon());
     }
     this->setIcon(icn);
     this->setToolTip(mShortcut.name());
