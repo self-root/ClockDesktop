@@ -9,6 +9,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    about.cpp \
     dialog.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
     todolistview.cpp
 
 HEADERS += \
+    about.h \
     dialog.h \
     mainwindow.h \
     shortcutbutton.h \
@@ -26,6 +28,7 @@ HEADERS += \
     todolistview.h
 
 FORMS += \
+    about.ui \
     mainwindow.ui \
     shortcutdialog.ui \
     tododialog.ui
@@ -44,3 +47,5 @@ DEPENDPATH += $$PWD/../DeskClockCore
 
 RESOURCES += \
     assets.qrc
+
+RC_ICONS = assets/icons/shortcut.ico

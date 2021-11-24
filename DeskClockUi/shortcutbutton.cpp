@@ -24,6 +24,8 @@
 #include <QMenu>
 #include <QAction>
 #include <QDebug>
+#include <QFileIconProvider>
+#include <QFileInfo>
 #include "controller.h"
 
 ShortcutButton::ShortcutButton(QWidget *parent)
@@ -31,10 +33,10 @@ ShortcutButton::ShortcutButton(QWidget *parent)
 {
     QIcon icn(":/icons/add.png");
     this->setIcon(icn);
-    this->setIconSize(QSize(50, 50));
+    this->setIconSize(QSize(32, 32));
     setContentsMargins(0, 0, 0, 0);
     setFlat(true);
-    resize(90, 90);
+    //resize(90, 90);
 }
 
 void ShortcutButton::setShortcut(const Shortcut &shortcut_, bool reset)
@@ -52,8 +54,23 @@ void ShortcutButton::setShortcut(const Shortcut &shortcut_, bool reset)
     mShortcut.setPath(shortcut_.path());
     mShortcut.setDescription(shortcut_.description());
     mShortcut.setArgs(shortcut_.args());
-    QIcon icn = mShortcut.icon().isEmpty() ? QIcon(":/icons/window.png")
-                                            : QIcon(mShortcut.icon());
+    /*QIcon icn = mShortcut.icon().isEmpty() ? QIcon(":/icons/window.png")
+                                            : QIcon(mShortcut.icon());*/
+    QIcon icn(":/icons/add.png");
+    QFileInfo fileInfo(mShortcut.path());
+    if (mShortcut.icon().isEmpty())
+    {
+        if (fileInfo.exists())
+        {
+            QFileIconProvider iconProvider;
+            icn = iconProvider.icon(fileInfo);
+        }
+        else
+        {
+            icn = QIcon(":/icons/window.png");
+        }
+
+    }
     this->setIcon(icn);
     this->setToolTip(mShortcut.name());
 }

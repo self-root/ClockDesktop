@@ -2,8 +2,7 @@
 
 Dialog::Dialog(QWidget *parent) : QWidget(parent)
 {
-    setAttribute(Qt::WA_TranslucentBackground);
-    setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::SplashScreen);
     setWindowModality(Qt::ApplicationModal);
 }
 

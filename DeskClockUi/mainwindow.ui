@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>392</width>
-    <height>718</height>
+    <height>608</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>392</width>
-    <height>718</height>
+    <height>608</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
    <property name="maximumSize">
     <size>
      <width>398</width>
-     <height>718</height>
+     <height>608</height>
     </size>
    </property>
    <property name="styleSheet">
@@ -47,7 +47,7 @@ background-color: rgba(7.8, 12.9, 23.9, 0);
 }
 QWidget#todoWidget{
 background-color: rgba(7.8, 12.9, 23.9, 0);
-background-image: url(&quot;:/images/todoBackground.png&quot;);
+background-image: url(&quot;:/images/todoBackground2.png&quot;);
 }
 QLabel{
 color: #ffd60a;
@@ -56,15 +56,20 @@ font-size: 36px;
 font-family: &quot;Aller&quot;}
 
 QPushButton{
-width: 85;
-height: 85;
-max-width: 85;
+width: 70;
+height: 70;
+max-width: 70;
 /*max-height:85;
 border-radius: 8px;
 border-style: solid;
 border-width: 2px;
 border-color: white;*/
-background-image: url(&quot;:/images/btn.png&quot;);
+/*background-image: url(&quot;:/images/btn2.png&quot;);*/
+border: 1px solid #00fcfc;
+border-radius: 4px;
+}
+QPushButton:hover{
+background-color: rgba(0, 98.8, 98.8, 0.4);
 }
 QLabel#timeLabel{
 	font-size: 48px;
@@ -77,6 +82,11 @@ QListView{
 	color: white;
 	font: bold;
 	font-family: &quot;Aller&quot;;
+	border: 2px solid rgba(255, 255, 255, 0);
+outline: none;
+}
+QListView:focus{
+	border-color: rgba(255, 255, 255, 0);
 }
 QListView::Item:selected{
 	background-color:  #00fcfc;
@@ -163,6 +173,12 @@ background-image: url(&quot;:/images/background.png&quot;);
           <height>248</height>
          </size>
         </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>248</height>
+         </size>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <property name="leftMargin">
           <number>0</number>
@@ -221,10 +237,28 @@ background-image: url(&quot;:/images/background.png&quot;);
         <property name="minimumSize">
          <size>
           <width>300</width>
-          <height>190</height>
+          <height>150</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>150</height>
          </size>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <property name="leftMargin">
+          <number>3</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>3</number>
+         </property>
+         <property name="bottomMargin">
+          <number>3</number>
+         </property>
          <item>
           <layout class="QGridLayout" name="shortcutLayout" columnminimumwidth="1">
            <property name="leftMargin">
@@ -239,6 +273,12 @@ background-image: url(&quot;:/images/background.png&quot;);
            <property name="bottomMargin">
             <number>0</number>
            </property>
+           <property name="horizontalSpacing">
+            <number>4</number>
+           </property>
+           <property name="verticalSpacing">
+            <number>6</number>
+           </property>
           </layout>
          </item>
         </layout>
@@ -249,13 +289,13 @@ background-image: url(&quot;:/images/background.png&quot;);
         <property name="minimumSize">
          <size>
           <width>380</width>
-          <height>256</height>
+          <height>180</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
           <width>380</width>
-          <height>256</height>
+          <height>180</height>
          </size>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_6">

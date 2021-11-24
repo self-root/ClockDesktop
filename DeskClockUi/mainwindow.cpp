@@ -20,6 +20,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "about.h"
 #include <QTime>
 #include <QDate>
 #include <QDebug>
@@ -33,9 +34,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     setWindowFlags(Qt::FramelessWindowHint
                    | Qt::SplashScreen
-                   | Qt::WindowStaysOnBottomHint);
+                   /*| Qt::WindowStaysOnBottomHint*/);
     setAttribute(Qt::WA_TranslucentBackground);
-    setAttribute(Qt::WA_DeleteOnClose);
+    //setAttribute(Qt::WA_DeleteOnClose);
     setTrayIcon();
     ui->setupUi(this);
     setTime();
@@ -72,7 +73,8 @@ void MainWindow::mousePressEvent(QMouseEvent *e)
 void MainWindow::contextMenuEvent(QContextMenuEvent *e)
 {
     QMenu menu(this);
-    menu.addAction("Close", this, [this](){close();});
+    menu.addAction("About", this, &MainWindow::openAbout);
+    menu.addAction("Close", this, &MainWindow::close);
     menu.exec(e->globalPos());
 }
 
@@ -97,6 +99,15 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QSettings settings;
     settings.setValue("mainwindow/geometry", geometry());
     settings.sync();
+    trayIcon->hide();
+    //event->accept();
+    QApplication::exit();
+}
+
+void MainWindow::openAbout()
+{
+    About *about = new About;
+    about->show();
 }
 
 void MainWindow::setUi()
@@ -131,7 +142,8 @@ void MainWindow::setTrayIcon()
     QIcon icon(":/icons/shortcut.png");
     trayIcon = new QSystemTrayIcon(icon);
     QMenu *menu = new QMenu;
-    menu->addAction("Close", this, [this](){close();});
+    menu->addAction("About", this, &MainWindow::openAbout);
+    menu->addAction("Close", this, &MainWindow::close);
     trayIcon->setContextMenu(menu);
     trayIcon->show();
 

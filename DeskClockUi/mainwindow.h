@@ -53,6 +53,7 @@ public:
 public slots:
     void setTime();
     void closeEvent(QCloseEvent *event) override;
+    void openAbout();
 
 private:
     Ui::MainWindow *ui;

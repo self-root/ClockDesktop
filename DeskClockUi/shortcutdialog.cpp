@@ -26,6 +26,7 @@ ShortcutDialog::ShortcutDialog(QWidget *parent) :
     Dialog(parent),
     ui(new Ui::ShortcutDialog)
 {
+    setAttribute(Qt::WA_TranslucentBackground);
     ui->setupUi(this);
 }
 
@@ -44,31 +45,24 @@ void ShortcutDialog::setFormData(const Shortcut &shortcut)
 
 void ShortcutDialog::on_executablePathButton_clicked()
 {
-    QFileDialog fileDialog;
-    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-    fileDialog.setFileMode(QFileDialog::ExistingFile);
-    fileDialog.setDirectory(QDir::homePath());
+    auto selectedFile = QFileDialog::getOpenFileName(this,
+                                                     "Select an executable file",
+                                                     QDir::homePath(), "");
+    if (!selectedFile.isEmpty())
+        ui->executablePathEdit->setText(selectedFile);
 
-    QStringList fileNames;
-    if (fileDialog.exec())
-        fileNames = fileDialog.selectedFiles();
-    if (!fileNames.empty())
-        ui->executablePathEdit->setText(fileNames.first());
 }
 
 void ShortcutDialog::on_chooseIconButton_clicked()
 {
-    QFileDialog fileDialog;
-    fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-    fileDialog.setFileMode(QFileDialog::ExistingFile);
-    fileDialog.setDirectory(QDir::homePath());
-    fileDialog.setNameFilter("Images (*.png *.ico *.jpg *.jpeg *.svg *.webp)");
+    auto selectedFile = QFileDialog::getOpenFileName(this,
+                                                     "Select an Icon",
+                                                     QDir::homePath(),
+                                                     "Images (*.png *.ico *.jpg *.jpeg *.svg *.webp)");
+    if (!selectedFile.isEmpty())
+        ui->iconPathEdit->setText(selectedFile);
 
-    QStringList fileNames;
-    if (fileDialog.exec())
-        fileNames = fileDialog.selectedFiles();
-    if (!fileNames.empty())
-        ui->iconPathEdit->setText(fileNames.first());
+
 }
 
 void ShortcutDialog::on_cancelButton_clicked()

@@ -27,6 +27,7 @@ TodoDialog::TodoDialog(QWidget *parent) :
     Dialog(parent),
     ui(new Ui::TodoDialog)
 {
+    setAttribute(Qt::WA_TranslucentBackground);
     ui->setupUi(this);
 }
 
