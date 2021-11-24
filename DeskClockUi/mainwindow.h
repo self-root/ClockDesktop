@@ -28,6 +28,7 @@
 #include <QContextMenuEvent>
 #include <vector>
 #include <memory>
+#include <QSystemTrayIcon>
 #include "shortcut.h"
 #include "shortcutbutton.h"
 #include "controller.h"
@@ -58,8 +59,11 @@ private:
     QTimer *timer;
     //Controller * controller;
     TodoListView *todoListView = nullptr;
+    QSystemTrayIcon *trayIcon;
 
     void setUi();
+    void setTrayIcon();
+    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
     int previousPos_x;
     int previousPos_y;

@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     a.setOrganizationName("Root_");
     a.setApplicationName("ClockDesktop");
+    //QMainWindow window;
     MainWindow w;
     w.show();
     return a.exec();

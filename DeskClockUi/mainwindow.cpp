@@ -31,7 +31,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    //setGeometry(0, 0, 554, 800);
+    setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
+    setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setTrayIcon();
     ui->setupUi(this);
     setTime();
     timer = new QTimer;
@@ -110,9 +113,7 @@ void MainWindow::setUi()
     todoListView = new TodoListView;
     ui->todoLayout->addWidget(todoListView);
 
-    setWindowFlags(Qt::FramelessWindowHint);
     //setAttribute(Qt::WA_NoSystemBackground);
-    setAttribute(Qt::WA_TranslucentBackground);
     //ui->listWidget->verticalScrollBar()->setVisible(false);
 
     QSettings setting;
@@ -120,5 +121,26 @@ void MainWindow::setUi()
     {
         qDebug() << setting.value("mainwindow/geometry").toRect();
         setGeometry(setting.value("mainwindow/geometry").toRect());
+    }
+}
+
+void MainWindow::setTrayIcon()
+{
+    QIcon icon(":/icons/shortcut.png");
+    trayIcon = new QSystemTrayIcon(icon);
+    QMenu *menu = new QMenu;
+    menu->addAction("Close", this, [this](){close();});
+    trayIcon->setContextMenu(menu);
+    trayIcon->show();
+
+    QObject::connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::onTrayIconActivated);
+}
+
+void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    qDebug() << "Tray activated. " << reason;
+    if (reason == QSystemTrayIcon::Trigger)
+    {
+        trayIcon->contextMenu()->show();
     }
 }
