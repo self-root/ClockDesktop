@@ -31,7 +31,9 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow);
+    setWindowFlags(Qt::FramelessWindowHint
+                   | Qt::SplashScreen
+                   | Qt::WindowStaysOnBottomHint);
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_DeleteOnClose);
     setTrayIcon();
