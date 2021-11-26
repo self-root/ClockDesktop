@@ -20,6 +20,7 @@
 
 #include "shortcutdialog.h"
 #include "ui_shortcutdialog.h"
+#include "appselection.h"
 #include <QFileDialog>
 
 ShortcutDialog::ShortcutDialog(QWidget *parent) :
@@ -45,20 +46,33 @@ void ShortcutDialog::setFormData(const Shortcut &shortcut)
 
 void ShortcutDialog::on_executablePathButton_clicked()
 {
-    auto selectedFile = QFileDialog::getOpenFileName(this,
-                                                     "Select an executable file",
-                                                     QDir::homePath(), "");
+#ifdef __linux__
+    AppSelection *select = new AppSelection;
+    select->show();
+    connect(select, &AppSelection::fileChoosed, this, &ShortcutDialog::setFormData);
+    //AppSelection::getApp();
+#else
+    auto selectedFile = QFileDialog::getOpenFileName
+        (
+            this,
+            "Select an executable file",
+            QDir::homePath(), ""
+        );
     if (!selectedFile.isEmpty())
         ui->executablePathEdit->setText(selectedFile);
+#endif
 
 }
 
 void ShortcutDialog::on_chooseIconButton_clicked()
 {
-    auto selectedFile = QFileDialog::getOpenFileName(this,
-                                                     "Select an Icon",
-                                                     QDir::homePath(),
-                                                     "Images (*.png *.ico *.jpg *.jpeg *.svg *.webp)");
+    auto selectedFile = QFileDialog::getOpenFileName
+        (
+            this,
+            "Select an Icon",
+            QDir::homePath(),
+            "Images (*.png *.ico *.jpg *.jpeg *.svg *.webp)"
+        );
     if (!selectedFile.isEmpty())
         ui->iconPathEdit->setText(selectedFile);
 

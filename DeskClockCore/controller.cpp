@@ -21,6 +21,10 @@
 #include "controller.h"
 #include <QDebug>
 #include <QProcess>
+#include <QDir>
+#include <QSettings>
+#include <QRegExp>
+
 
 Controller::Controller(QObject *parent) : QObject(parent)
 {
@@ -54,5 +58,41 @@ bool Controller::removeShortcut(int id)
 bool Controller::updateShortcut(Shortcut &shortcut)
 {
     return DatabaseManager::instance().shortcutDao.update(shortcut);
+}
+
+std::unique_ptr<std::vector<std::unique_ptr<Shortcut> > > Controller::getInstalledApps()
+{
+    QDir appDir("/usr/share/applications/");
+    auto apps = appDir.entryList(QStringList("*.desktop"));
+    std::unique_ptr<std::vector<std::unique_ptr<Shortcut>>> shortcuts(
+        new std::vector<std::unique_ptr<Shortcut>>);
+    for (auto &a : apps)
+    {
+        std::unique_ptr<Shortcut> shortcut(new Shortcut);
+        QSettings appSetting(appDir.absolutePath()+ "/" +a, QSettings::IniFormat);
+        qDebug() << "File: " << appDir.absolutePath()+ "/" +a;
+        appSetting.beginGroup("Desktop Entry");
+        auto name = appSetting.value("Name", "Unknown").toString();
+        qDebug() << "Appname: " << name;
+        auto icon = appSetting.value("Icon", "Unknown").toString();
+        //QRegExp re("^%[a-zA-z]+\s");
+        auto exec = appSetting.value("Exec", "").toString();
+        auto args = exec.split(" ");
+        exec = args.first();
+        for (int i = 0; i < args.size(); i++)
+        {
+            if (args.at(i).startsWith("%"))
+                args.removeAt(i);
+        }
+        args.removeFirst();
+        shortcut->setName(name);
+        shortcut->setIcon(icon);
+        shortcut->setPath(exec);
+        shortcut->setArgs(args.join(","));
+
+        shortcuts->push_back(std::move(shortcut));
+    }
+
+    return shortcuts;
 }
 

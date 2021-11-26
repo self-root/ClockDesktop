@@ -52,7 +52,6 @@ void TodoDialog::on_save_clicked()
         emit todoValidated(todo);
         close();
     }
-
 }
 
 void TodoDialog::on_cancel_clicked()

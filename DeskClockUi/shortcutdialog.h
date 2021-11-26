@@ -37,6 +37,7 @@ public:
     explicit ShortcutDialog(QWidget *parent = nullptr);
     ~ShortcutDialog();
 
+public slots:
     void setFormData(const Shortcut &shortcut);
 
 private slots:
@@ -50,9 +51,6 @@ private slots:
 
 private:
     Ui::ShortcutDialog *ui;
-
-    //int previous_x;
-    //int previous_y;
 
 signals:
     void shortcutValidated(Shortcut &shortcut);

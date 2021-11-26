@@ -57,6 +57,8 @@ public:
 
     static bool updateShortcut(Shortcut &shortcut);
 
+    static std::unique_ptr<std::vector<std::unique_ptr<Shortcut>>> getInstalledApps();
+
 };
 
 #endif // CONTROLLER_H

@@ -36,13 +36,14 @@ public:
 
     void contextMenuEvent(QContextMenuEvent *e) override;
 
-    void onNew();
-    void onEdit();
-    void onDone();
-
 public slots:
     void onAddNew(ToDo &todo);
     void onUpdate(ToDo &todo);
+
+    // Slots for contextmenu
+    void onNew();
+    void onEdit();
+    void onDone();
 private:
     bool itemSelected();
 };

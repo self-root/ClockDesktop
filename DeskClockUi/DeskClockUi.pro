@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     about.cpp \
+    appselection.cpp \
     dialog.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     about.h \
+    appselection.h \
     dialog.h \
     mainwindow.h \
     shortcutbutton.h \
@@ -29,6 +31,7 @@ HEADERS += \
 
 FORMS += \
     about.ui \
+    appselection.ui \
     mainwindow.ui \
     shortcutdialog.ui \
     tododialog.ui

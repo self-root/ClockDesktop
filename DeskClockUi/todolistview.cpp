@@ -36,9 +36,9 @@ TodoListView::TodoListView(QWidget *parent)
 void TodoListView::contextMenuEvent(QContextMenuEvent *e)
 {
     QMenu menu(this);
-    menu.addAction("New", this, [this](){onNew();});
-    menu.addAction("Edit", this, [this](){onEdit();})->setDisabled(!itemSelected());
-    menu.addAction("Done", this, [this](){onDone();})->setDisabled(!itemSelected());
+    menu.addAction("New", this, &TodoListView::onNew);
+    menu.addAction("Edit", this, &TodoListView::onEdit)->setDisabled(!itemSelected());
+    menu.addAction("Done", this, &TodoListView::onDone)->setDisabled(!itemSelected());
 
     menu.exec(e->globalPos());
 }
@@ -48,7 +48,6 @@ void TodoListView::onNew()
     TodoDialog *dialog = new TodoDialog;
     QObject::connect(dialog, &TodoDialog::todoValidated, this, &TodoListView::onAddNew);
     dialog->show();
-    //dialog->deleteLater();
 }
 
 void TodoListView::onEdit()
