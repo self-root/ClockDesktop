@@ -26,7 +26,13 @@
 #include "shortcutdao.h"
 
 #include <QObject>
+#include <QDir>
 
+#ifdef __linux__
+const QString APP_PATH = QDir::homePath() + "/.clockdesktop";
+#elif __WIN32
+const QString APP_PATH = QDir::homePath() + "/.clockdesktop";
+#endif
 
 class QSqlDatabase;
 

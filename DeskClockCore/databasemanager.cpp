@@ -30,24 +30,13 @@ DatabaseManager::DatabaseManager(QObject *parent)
     : QObject(parent), mDatabase(new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE")))
     , toDoDao(*mDatabase), shortcutDao(*mDatabase)
 {
-#ifdef __linux__
-    QString dbpath = QDir::homePath() + "/.clockdesktop/";
-    QDir dbdir(dbpath);
-    if(!dbdir.exists())
+    QDir dbdir(APP_PATH);
+    if (!dbdir.exists())
     {
-        dbdir.mkdir(dbpath);
+        dbdir.mkdir(APP_PATH);
     }
-    qDebug() << dbpath;
-#elif _WIN32
-    QString dbpath = QDir::homePath() + "/clockdesktop/";
-    QDir dbdir(dbpath);
-    if(!dbdir.exists())
-    {
-        dbdir.mkdir(dbpath);
-    }
-    qDebug() << dbpath;
-#endif
-    mDatabase->setDatabaseName(dbpath + "todoclock.db");
+
+    mDatabase->setDatabaseName(dbdir.absolutePath() + "/todoclock.db");
     if (!mDatabase->open())
     {
         Log::log(mDatabase->lastError().text());
