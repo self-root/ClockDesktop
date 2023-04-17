@@ -8,6 +8,7 @@
         <file alias="frame4.png">assets/images/frame4.png</file>
         <file alias="btn2.png">assets/images/btn2.png</file>
         <file alias="background.png">assets/images/background.png</file>
+        <file alias="background_round.png">assets/images/background_round.png</file>
         <file alias="todoBackground.png">assets/images/todoBackground.png</file>
         <file alias="todoBackground2.png">assets/images/todoBackground2.png</file>
         <file alias="widgetbackground.png">assets/images/widgetbackground.png</file>

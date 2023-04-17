@@ -23,7 +23,7 @@
 #include <QProcess>
 #include <QDir>
 #include <QSettings>
-#include <QRegExp>
+#include <QRegularExpression>
 
 
 Controller::Controller(QObject *parent) : QObject(parent)

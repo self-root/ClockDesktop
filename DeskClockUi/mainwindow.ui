@@ -34,9 +34,9 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QWidget#centralwidget{
-	background-color: rgba(7.8, 12.9, 23.9, .5);
+	background-color: rgba(7.8, 12.9, 23.9, 0);
 	/*background-color: #3a86ff;*/
-background-image: url(&quot;:/images/background.png&quot;);
+background-image: url(&quot;:/images/background_round.png&quot;);
 }
 QWidget#timeWidget{
 	background-color: rgba(7.8, 12.9, 23.9, 0);
